@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ScalaProjectSettings">
+    <option name="autoRunDelay" value="2371" />
+    <option name="collectionTypeHighlightingLevel" value="2" />
+    <option name="customScalatestSyntaxHighlighting" value="true" />
+    <option name="includeBlockExpressions" value="true" />
+    <option name="includeLiterals" value="true" />
+    <option name="intInjectionMapping">
+      <map>
+        <entry key="xml" value="XML" />
+      </map>
+    </option>
+    <option name="outputLimit" value="150" />
+    <option name="showArgumentsToByNameParams" value="true" />
+  </component>
+  <component name="WorksheetDefaultProjectSettings">
+    <option name="compilerProfileName" value="Default" />
+    <option name="moduleName" value="adventOfCode2018" />
+  </component>
+</project>
