@@ -1,7 +1,7 @@
 import scala.language.postfixOps
 
-val nbPlayers = 10
-val lastValue = 1618
+val nbPlayers = 9
+val lastValue = 25
 
 val initialScores = Map.empty[Int, Int]
 
@@ -19,15 +19,14 @@ def insert[A](xs: Seq[A], at: Int, el: A): Seq[A] = xs.patch(at, Seq(el), 0)
 def delete[A](xs: Seq[A], at: Int): Seq[A] = xs.zipWithIndex.filter(_._2 != at).map(_._1)
 
 val res = (0 until lastValue).scanLeft((1, 0, initialScores, 0, Seq(0))){
-    case (acc@(turn, player, scores, currentMarble, circle), cur) => {
-      val indexCurrent = circle indexOf currentMarble
+    case (acc@(turn, player, scores, marble, circle), cur) => {
+      val currentIndex = circle indexOf marble
       val (newCurrentMarble, newCircle, newScores) =
         if(turn > 0 && turn % 23 == 0){
-          val indexDelete = mod(indexCurrent - 7, circle.length)
-          val tmpNewCircle = delete(circle, indexDelete)
-          (tmpNewCircle(indexDelete), tmpNewCircle, scores + (player -> (scores.getOrElse(player, 0) + 23 + circle(indexDelete))))
+          val deleteAt = mod(currentIndex - 7, circle.length)
+          (circle(mod(deleteAt-1, circle.length-1)), delete(circle, deleteAt), scores + (player -> (scores.getOrElse(player, 0) + 23 + circle(deleteAt))))
         } else {
-          (turn, insert(circle, mod(indexCurrent + 2, circle.length), turn), scores)
+          (turn, insert(circle, mod(currentIndex + 2, circle.length), turn), scores)
         }
 
       (turn + 1, mod(player + 1, nbPlayers), newScores, newCurrentMarble, newCircle)
